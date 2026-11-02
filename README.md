@@ -1,32 +1,35 @@
 # Texas Tech Student Dashboard
 
-A React and TypeScript student-information interface with an ID-entry screen, class details, campus information, and navigation tools.
+An independent React and TypeScript demo for viewing a synthetic student schedule, exporting a calendar, and finding cited campus resources.
 
-![Texas Tech Student Dashboard ID-entry screen, captured from the main-branch local build](docs/dashboard.jpg)
+**[Open the live demo →](https://spattoor.github.io/Texastech-Student-Dashboard/)**
 
-*Screenshot: the existing main-branch application running locally. No student record was opened for this capture.*
+![Student dashboard showing synthetic classes and calendar export](docs/dashboard.jpg)
 
-## Explore the code
+## Try it
 
-- [Main interface](student-info-website/src/pages/Home.tsx)
-- [Student details](student-info-website/src/pages/StudentDetails.tsx)
-- [Reusable components](student-info-website/src/components)
+- Browse two explicitly synthetic classes without signing in or entering a student ID.
+- Export **20 scheduled sessions across two weekly sample classes** as one RFC 5545 `.ics` file. Tests verify recurrence, unique event IDs, escaping, and UTF-8 line folding.
+- Open campus directions in Google Maps.
+- Search a small set of cited Registrar, calendar, and financial-aid resources entirely in the browser.
+- Open student details through hash routing; direct links and reloads work.
 
-This is an independent portfolio project, not an official Texas Tech University service. The current repository uses hard-coded demonstration records; it does not establish a live university-system integration. The chatbot component does not establish a working AI service.
+The public demo uses fictional data. It does not access TTU accounts, grades, enrollment records, or aid eligibility. Campus search is a local keyword reference lookup, not an AI-generated answer. No API keys or paid services are needed.
 
-## Run locally
+## Run and verify
 
 ```bash
-git clone https://github.com/spattoor/Texastech-Student-Dashboard.git
-cd Texastech-Student-Dashboard/student-info-website
+cd student-info-website
 npm ci --ignore-scripts
 npm start
 ```
 
-Open the local URL shown by the development server. To build the interface:
-
 ```bash
-npm run build
+node --test student-info-website/deploy-tests/calendar.test.mjs
+cd student-info-website
+PUBLIC_URL=. GENERATE_SOURCEMAP=false npm run build
 ```
 
-The existing main branch compiled successfully for this screenshot. A public Dashboard deployment has not been verified; the image is a local preview. Do not enter real student credentials or identifiers into the demo.
+GitHub Pages serves the checked-in build under `docs/` on `main`. Rebuild and copy the generated `build/` contents to `docs/` when changing the interface. The app uses relative assets and hash routing for repository-subpath hosting.
+
+The sample schedule runs November 2–December 4, 2026 in CST. It is demonstration data, not actual enrollment. Official reference pages: [Registrar](https://www.depts.ttu.edu/registrar/) and [Financial Aid](https://www.depts.ttu.edu/financialaid/).
