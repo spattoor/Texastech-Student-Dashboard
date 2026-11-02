@@ -19,7 +19,8 @@ The public demo uses fictional data. It does not access TTU accounts, grades, en
 ## Run and verify
 
 ```bash
-cd student-info-website
+git clone https://github.com/spattoor/Texastech-Student-Dashboard.git
+cd Texastech-Student-Dashboard/student-info-website
 npm ci --ignore-scripts
 npm start
 ```
